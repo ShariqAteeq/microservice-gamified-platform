@@ -1,0 +1,82 @@
+version: '3.8'
+
+services:
+  # User Service Database
+  user-db:
+    image: postgres:15
+    container_name: user-db
+    environment:
+      POSTGRES_DB: user_service_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "55432:5432"
+    volumes:
+      - user_db_data:/var/lib/postgresql/data
+    networks:
+      - quiz-network
+
+  # Quiz Service Database (for future use)
+  quiz-db:
+    image: postgres:15
+    container_name: quiz-db
+    environment:
+      POSTGRES_DB: quiz_service_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "55433:5432"
+    volumes:
+      - quiz_db_data:/var/lib/postgresql/data
+    networks:
+      - quiz-network
+
+  # Achievement Service Database (for future use)
+  achievement-db:
+    image: postgres:15
+    container_name: achievement-db
+    environment:
+      POSTGRES_DB: achievement_service_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "55434:5432"
+    volumes:
+      - achievement_db_data:/var/lib/postgresql/data
+    networks:
+      - quiz-network
+
+  # Redis for caching and message queue
+  redis:
+    image: redis:7-alpine
+    container_name: quiz-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - quiz-network
+    command: redis-server --appendonly yes
+
+  # Optional: Redis Commander for Redis GUI
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    container_name: redis-commander
+    environment:
+      REDIS_HOSTS: redis
+    ports:
+      - "8081:8081"
+    depends_on:
+      - redis
+    networks:
+      - quiz-network
+
+volumes:
+  user_db_data:
+  quiz_db_data:
+  achievement_db_data:
+  redis_data:
+
+networks:
+  quiz-network:
+    driver: bridge

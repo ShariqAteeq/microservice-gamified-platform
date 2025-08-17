@@ -1,0 +1,16 @@
+# Generated protobuf artifacts
+*_pb.js
+*_pb.d.ts
+*_grpc_pb.js
+*_grpc_pb.d.ts
+
+# Node modules
+node_modules/
+
+# OS & editors
+.DS_Store
+.vscode/
+.idea/
+
+# Env files
+.env

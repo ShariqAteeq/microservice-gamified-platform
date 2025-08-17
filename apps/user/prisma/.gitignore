@@ -1,0 +1,20 @@
+# Ignore local database files
+*.db
+*.sqlite
+dev.db
+
+# Ignore environment files
+.env
+.env.*
+
+# Ignore generated Prisma client
+.prisma/
+
+# Migrations may be committed; do not ignore migrations/* unless you want them hidden
+
+# OS & editors
+.DS_Store
+.vscode/
+
+# Logs
+npm-debug.log*

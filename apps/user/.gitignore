@@ -1,0 +1,32 @@
+# Node modules
+node_modules/
+
+# Build outputs
+dist/
+build/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Coverage
+coverage/
+
+# Env files
+.env
+.env.*
+
+# Prisma client (generated)
+.prisma/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS & editors
+.DS_Store
+.vscode/
+.idea/
+
+# Local editor settings
+*.local
